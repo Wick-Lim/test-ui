@@ -1,30 +1,39 @@
-# test-ui
+# Material UI - Vite.js in TypeScript example
 
-> Made with create-react-library
+## How to use
 
-[![NPM](https://img.shields.io/npm/v/test-ui.svg)](https://www.npmjs.com/package/test-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-## Install
+<!-- #default-branch-switch -->
 
 ```bash
-npm install --save test-ui
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-vite-ts
+cd material-ui-vite-ts
 ```
 
-## Usage
+Install it and run:
 
-```tsx
-import React, { Component } from 'react'
-
-import MyComponent from 'test-ui'
-import 'test-ui/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-## License
+or:
 
-MIT © [](https://github.com/)
+<!-- #default-branch-switch -->
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
+
+## The idea behind the example
+
+This example uses [Vite.js](https://github.com/vitejs/vite).
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
+
+## What's next?
+
+<!-- #default-branch-switch -->
+
+You now have a working example project.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
