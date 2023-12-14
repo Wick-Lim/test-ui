@@ -1,6 +1,22 @@
 import loadable from "@loadable/component";
-import { AppBar, Box, Tab, Tabs, Toolbar, Typography } from "@mui/material";
-import { Link, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import Logo from "./assets/rsq-logo-large.svg";
 
@@ -49,14 +65,19 @@ export default function App() {
     <Box display="flex" flexDirection="column" flex="1">
       <AppBar position="sticky" color="default" elevation={1}>
         <Toolbar>
-          <img src={Logo} alt="logo" width="auto" height="16px" onClick={() => {
-            navigate('/');
-          }} style={{
-            cursor: 'pointer'
-          }} />
-
+          <img
+            src={Logo}
+            alt="logo"
+            width="auto"
+            height="16px"
+            onClick={() => {
+              navigate("/");
+            }}
+            style={{
+              cursor: "pointer",
+            }}
+          />
           <Box width="32px" />
-
           <Tabs value={tab} onChange={(_, v) => navigate(`/${v}`)}>
             <Tab value="" sx={{ minWidth: 0, width: 0, p: 0 }} />
             <Tab value="property" label="건물/매물" />
@@ -68,6 +89,15 @@ export default function App() {
             <Tab value="follow-up" label="사후관리" />
             <Tab value="setting" label="설정" />
           </Tabs>
+          <Box flex="1" />
+          <Button variant="outlined" color="primary" onClick={() => {
+            navigate("/my-work");
+          }}>
+            내 업무
+          </Button>
+          <IconButton size="small">
+            <Avatar />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -114,6 +144,7 @@ export default function App() {
             // @ts-ignore
             element={<XSetting children={() => <x-setting />} />}
           />
+          <Route path="/my-work" element={<div>My Work</div>} />
         </Routes>
       </Box>
     </Box>
