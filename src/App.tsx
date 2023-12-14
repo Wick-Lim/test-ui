@@ -51,27 +51,27 @@ export default function App() {
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route
-            path="/inbound"
+            path="/inbound/*"
             // @ts-ignore
             element={<XInbound children={() => <x-inbound />} />}
           />
           <Route
-            path="/client-inform"
+            path="/client-inform/*"
             // @ts-ignore
             element={<XClientInform children={() => <x-client-inform />} />}
           />
           <Route
-            path="/marketing"
+            path="/marketing/*"
             // @ts-ignore
             element={<XMarketing children={() => <x-marketing />} />}
           />
           <Route
-            path="/sales"
+            path="/sales/*"
             // @ts-ignore
             element={<XSales children={() => <x-sales />} />}
           />
           <Route
-            path="/follow-up"
+            path="/follow-up/*"
             // @ts-ignore
             element={<XFollowUp children={() => <x-follow-up />} />}
           />
