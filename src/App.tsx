@@ -9,91 +9,42 @@ import {
   IconButton,
   Tab,
   Tabs,
-  Toolbar
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { FC, createElement, useMemo } from "react";
 import Logo from "./assets/rsq-logo-large.svg";
 
-const XProperty = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/property.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
-const XCollect = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/collect.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
+const DynamicComponent: FC<{ url: string; component: string }> = ({
+  url,
+  component,
+}) => {
+  const Lib = useMemo(() => {
+    if (!url) return null;
 
-const XInbound = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/inbound.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
-const XClientInform = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/client-inform.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
-const XMarketing = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/marketing.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
-const XSales = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/sales.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
-const XFollowUp = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/follow-up.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
+    return loadable.lib(() => import(url), {
+      fallback: (
+        <Backdrop open>
+          <CircularProgress />
+        </Backdrop>
+      ),
+    });
+  }, [url]);
 
-const XSetting = loadable.lib(
-  // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/setting.js"),
-  {
-    fallback: <Backdrop open>
-      <CircularProgress />
-    </Backdrop>
-  }
-);
+  if (!Lib) return <></>;
+
+  return (
+    <Lib
+      children={() =>
+        createElement(component, {
+          style: { display: "flex", flexDirection: "column", flex: "1" },
+        })
+      }
+    />
+  );
+};
 
 export default function App() {
   const location = useLocation();
@@ -128,12 +79,19 @@ export default function App() {
             <Tab value="sales" label="영업관리" />
             <Tab value="follow-up" label="사후관리" />
             <Tab value="setting" label="설정" />
+            <Tab value="my-work" sx={{ minWidth: 0, width: 0, p: 0 }} />
           </Tabs>
           <Box flex="1" />
-          <Button variant="outlined" color="primary" onClick={() => {
-            navigate("/my-work");
-          }}>
-            내 업무
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              navigate("/my-work");
+            }}
+          >
+            <Typography variant="button" noWrap>
+              내 업무
+            </Typography>
           </Button>
           <IconButton size="small">
             <Avatar />
@@ -141,48 +99,80 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Box flex="1" position="relative">
+      <Box display="flex" flexDirection="column" flex="1" position="relative">
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route
             path="/property/*"
-            // @ts-ignore
-            element={<XProperty children={() => <x-property />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/property.js"
+                component="x-property"
+              />
+            }
           />
           <Route
             path="/collect/*"
-            // @ts-ignore
-            element={<XCollect children={() => <x-collect />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/collect.js"
+                component="x-collect"
+              />
+            }
           />
           <Route
             path="/inbound/*"
-            // @ts-ignore
-            element={<XInbound children={() => <x-inbound />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/inbound.js"
+                component="x-inbound"
+              />
+            }
           />
           <Route
             path="/client-inform/*"
-            // @ts-ignore
-            element={<XClientInform children={() => <x-client-inform />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/client-inform.js"
+                component="x-client-inform"
+              />
+            }
           />
           <Route
             path="/marketing/*"
-            // @ts-ignore
-            element={<XMarketing children={() => <x-marketing />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/marketing.js"
+                component="x-marketing"
+              />
+            }
           />
           <Route
             path="/sales/*"
-            // @ts-ignore
-            element={<XSales children={() => <x-sales />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/sales.js"
+                component="x-sales"
+              />
+            }
           />
           <Route
             path="/follow-up/*"
-            // @ts-ignore
-            element={<XFollowUp children={() => <x-follow-up />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/follow-up.js"
+                component="x-follow-up"
+              />
+            }
           />
           <Route
             path="/setting/*"
-            // @ts-ignore
-            element={<XSetting children={() => <x-setting />} />}
+            element={
+              <DynamicComponent
+                url="https://test-menu-1.vercel.app/setting.js"
+                component="x-setting"
+              />
+            }
           />
           <Route path="/my-work" element={<div>My Work</div>} />
         </Routes>
