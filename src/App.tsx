@@ -4,23 +4,23 @@ import { Link, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 
 const XInbound = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/service.x-inbound.js")
 );
 const XClientInform = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/service.x-inbound.js")
 );
 const XMarketing = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/service.x-inbound.js")
 );
 const XSales = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/service.x-inbound.js")
 );
 const XFollowUp = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/service.x-inbound.js")
 );
 
 export default function App() {
@@ -31,13 +31,14 @@ export default function App() {
 
   return (
     <Box display="flex" flexDirection="column" flex="1">
-      <AppBar position="sticky" color="default">
+      <AppBar position="sticky" color="default" elevation={1}>
         <Toolbar>
           <Typography variant="h6" component={Link} to="/">RSQUARE PORTAL</Typography>
 
           <Box width="32px" />
 
           <Tabs value={tab} onChange={(_, v) => navigate(`/${v}`)}>
+            <Tab value="" sx={{ minWidth: 0, width: 0, p: 0 }} />
             <Tab value="inbound" label="인바운드" />
             <Tab value="client-inform" label="고객정보관리" />
             <Tab value="marketing" label="마케팅" />
