@@ -2,57 +2,97 @@ import loadable from "@loadable/component";
 import {
   AppBar,
   Avatar,
+  Backdrop,
   Box,
   Button,
+  CircularProgress,
   IconButton,
   Tab,
   Tabs,
-  Toolbar,
-  Typography,
+  Toolbar
 } from "@mui/material";
 import {
-  Link,
   Route,
   Routes,
   useLocation,
-  useNavigate,
+  useNavigate
 } from "react-router-dom";
 
 import Logo from "./assets/rsq-logo-large.svg";
 
 const XProperty = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/property.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 const XCollect = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/collect.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 
 const XInbound = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/inbound.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 const XClientInform = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/client-inform.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 const XMarketing = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/marketing.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 const XSales = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/sales.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 const XFollowUp = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/follow-up.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 
 const XSetting = loadable.lib(
   // @ts-ignore
-  () => import("https://test-menu-1.vercel.app/service.js")
+  () => import("https://test-menu-1.vercel.app/setting.js"),
+  {
+    fallback: <Backdrop open>
+      <CircularProgress />
+    </Backdrop>
+  }
 );
 
 export default function App() {
@@ -64,7 +104,7 @@ export default function App() {
   return (
     <Box display="flex" flexDirection="column" flex="1">
       <AppBar position="sticky" color="default" elevation={1}>
-        <Toolbar>
+        <Toolbar sx={{ gap: "8px" }}>
           <img
             src={Logo}
             alt="logo"
@@ -77,7 +117,7 @@ export default function App() {
               cursor: "pointer",
             }}
           />
-          <Box width="32px" />
+          <Box width="24px" />
           <Tabs value={tab} onChange={(_, v) => navigate(`/${v}`)}>
             <Tab value="" sx={{ minWidth: 0, width: 0, p: 0 }} />
             <Tab value="property" label="건물/매물" />
