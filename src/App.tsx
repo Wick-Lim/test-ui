@@ -69,7 +69,7 @@ export default function App() {
             }}
           />
           <Box width="24px" />
-          <Tabs value={tab} onChange={(_, v) => navigate(`/${v}`)}>
+          <Tabs variant="scrollable" value={tab} onChange={(_, v) => navigate(`/${v}`)}>
             <Tab value="" sx={{ minWidth: 0, width: 0, p: 0 }} />
             <Tab value="property" label="건물/매물" />
             <Tab value="collect" label="정보수집/지원" />
